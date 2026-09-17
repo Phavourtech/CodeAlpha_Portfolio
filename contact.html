@@ -1,76 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact | Ugochukwu Favour</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
-    <a href="index.html" class="mark">UF</a>
-    <button class="menu-toggle" id="menuToggle">Menu</button>
+    <a href="index.html" class="brand">Ugochukwu Favour</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
     <nav class="nav-links" id="navLinks">
       <a href="index.html">Home</a>
-      <a href="about.html">Profile</a>
-      <a href="projects.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="projects.html">Projects</a>
       <a href="case-studies.html">Case Studies</a>
       <a href="contact.html" class="active">Contact</a>
     </nav>
   </header>
 
   <main>
-    <section class="page-section contact-panel">
+    <section class="contact-panel">
       <div>
-        <p class="label">Contact</p>
-        <h1>Let us build something useful and well thought out.</h1>
-      </div>
+        <p class="section-label">Contact</p>
+        <h1>Let us discuss a project, writing work, research idea, or frontend collaboration.</h1>
+        <p>
+          You can reach me for frontend projects, academic writing support, AI evaluation work,
+          portfolio reviews, research writing, IT reports, seminar papers, and collaboration opportunities.
+        </p>
 
-      <div class="contact-links">
-        <a href="mailto:hinazago@gmail.com">hinazago@gmail.com</a>
-        <a href="https://github.com/Phavourtech" target="_blank">GitHub</a>
-        <a href="https://www.linkedin.com/in/ugochukwu-favour-603140331" target="_blank">LinkedIn</a>
-      </div>
-    </section>
+        <div class="contact-links">
+          <a href="mailto:hinazago@gmail.com" class="contact-link">
+            <span>Email</span>
+            <strong>hinazago@gmail.com</strong>
+          </a>
 
-    <section class="page-section">
-      <form class="contact-form email-composer" id="contactForm">
-        <div class="composer-header">
-          <h2>Send a Message</h2>
-          <p>This prepares an email to my inbox.</p>
+          <a href="https://github.com/Phavourtech" target="_blank" class="contact-link">
+            <span>GitHub</span>
+            <strong>github.com/Phavourtech</strong>
+          </a>
+
+          <a href="https://www.linkedin.com/in/ugochukwu-favour-603140331" target="_blank" class="contact-link">
+            <span>LinkedIn</span>
+            <strong>Ugochukwu Favour</strong>
+          </a>
         </div>
+      </div>
 
-        <input type="text" id="name" placeholder="Your name" required />
-        <input type="email" id="email" placeholder="Your email" required />
-        <input type="text" id="subjectInput" placeholder="Subject" required />
+      <form class="contact-form" id="contactForm">
+        <label for="senderName">Your Name</label>
+        <input type="text" id="senderName" placeholder="Enter your name" required>
 
-        <div class="composer-toolbar">
-          <button type="button" data-format="bold"><strong>B</strong></button>
-          <button type="button" data-format="italic"><em>I</em></button>
-          <button type="button" data-format="list">List</button>
-          <button type="button" data-format="emoji">😊</button>
+        <label for="senderEmail">Your Email</label>
+        <input type="email" id="senderEmail" placeholder="Enter your email address" required>
 
-          <label class="file-label">
-            Add file
-            <input type="file" id="fileInput" />
+        <label for="emailSubject">Subject</label>
+        <input type="text" id="emailSubject" placeholder="What would you like to discuss?" required>
+
+        <label>Message</label>
+
+        <div class="editor-toolbar">
+          <button type="button" data-command="bold"><strong>B</strong></button>
+          <button type="button" data-command="italic"><em>I</em></button>
+          <button type="button" data-command="insertUnorderedList">• List</button>
+          <button type="button" data-command="insertOrderedList">1. List</button>
+
+          <select id="emojiPicker" aria-label="Choose emoji">
+            <option value="">Emoji</option>
+            <option value="😊">😊 Smile</option>
+            <option value="✨">✨ Sparkle</option>
+            <option value="💼">💼 Work</option>
+            <option value="📌">📌 Pin</option>
+            <option value="📎">📎 Attachment</option>
+            <option value="🚀">🚀 Launch</option>
+            <option value="💡">💡 Idea</option>
+            <option value="✅">✅ Done</option>
+            <option value="🤝">🤝 Collaborate</option>
+            <option value="❤️">❤️ Love</option>
+            <option value="🌸">🌸 Soft</option>
+            <option value="📚">📚 Study</option>
+            <option value="📝">📝 Writing</option>
+            <option value="🎯">🎯 Goal</option>
+            <option value="📅">📅 Date</option>
+            <option value="⭐">⭐ Important</option>
+          </select>
+
+          <label class="file-button">
+            Attach file
+            <input type="file" id="fileInput" hidden>
           </label>
         </div>
 
-        <textarea id="message" placeholder="Write your message here..." required></textarea>
+        <div
+          class="message-editor"
+          id="messageEditor"
+          contenteditable="true"
+          data-placeholder="Write your message here..."
+        ></div>
 
-        <p class="file-note" id="fileNote">
-          No file selected. Files cannot attach automatically through browser mail links, but your email app will open so you can attach it there.
-        </p>
+        <p class="file-note" id="fileNote"></p>
 
-        <button type="submit" class="send-btn">Send Message</button>
-        <p id="formStatus">Your email app will open with the message prepared.</p>
+        <button type="submit" class="btn primary-btn">Send Message</button>
       </form>
     </section>
   </main>
 
-  <footer>
-    <p>© 2026 Ugochukwu Favour.</p>
+  <footer class="site-footer">
+    <p>© 2026 Ugochukwu Favour. All rights reserved.</p>
   </footer>
 
   <script src="script.js"></script>

@@ -4,74 +4,62 @@ const navLinks = document.getElementById("navLinks");
 if (menuToggle && navLinks) {
   menuToggle.addEventListener("click", () => {
     navLinks.classList.toggle("show");
+    menuToggle.classList.toggle("active");
   });
 }
 
-const toolbarButtons = document.querySelectorAll(".composer-toolbar button");
-const messageBox = document.getElementById("message");
+const editor = document.getElementById("messageEditor");
+const emojiPicker = document.getElementById("emojiPicker");
 const fileInput = document.getElementById("fileInput");
 const fileNote = document.getElementById("fileNote");
+const contactForm = document.getElementById("contactForm");
 
-toolbarButtons.forEach(button => {
+document.querySelectorAll("[data-command]").forEach((button) => {
   button.addEventListener("click", () => {
-    if (!messageBox) return;
+    if (!editor) return;
 
-    const format = button.dataset.format;
-    const start = messageBox.selectionStart;
-    const end = messageBox.selectionEnd;
-    const selectedText = messageBox.value.slice(start, end);
-
-    let insertText = "";
-
-    if (format === "bold") {
-      insertText = selectedText ? `**${selectedText}**` : "**bold text**";
-    }
-
-    if (format === "italic") {
-      insertText = selectedText ? `_${selectedText}_` : "_italic text_";
-    }
-
-    if (format === "list") {
-      insertText = selectedText ? `\n• ${selectedText}` : "\n• First point\n• Second point";
-    }
-
-    if (format === "emoji") {
-      insertText = " 😊";
-    }
-
-    messageBox.value =
-      messageBox.value.slice(0, start) + insertText + messageBox.value.slice(end);
-
-    messageBox.focus();
+    editor.focus();
+    document.execCommand(button.dataset.command, false, null);
   });
 });
 
+if (emojiPicker && editor) {
+  emojiPicker.addEventListener("change", () => {
+    if (!emojiPicker.value) return;
+
+    editor.focus();
+    document.execCommand("insertText", false, emojiPicker.value);
+    emojiPicker.value = "";
+  });
+}
+
 if (fileInput && fileNote) {
   fileInput.addEventListener("change", () => {
-    const file = fileInput.files[0];
-
-    if (file) {
-      fileNote.textContent = `Selected file: ${file.name}. Attach it manually after your email app opens.`;
+    if (fileInput.files.length > 0) {
+      fileNote.textContent = `Selected file: ${fileInput.files[0].name}. Please attach it manually when your email app opens.`;
+    } else {
+      fileNote.textContent = "";
     }
   });
 }
 
-const contactForm = document.getElementById("contactForm");
-
-if (contactForm) {
-  contactForm.addEventListener("submit", event => {
+if (contactForm && editor) {
+  contactForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const subjectInput = document.getElementById("subjectInput").value;
-    const message = document.getElementById("message").value;
+    const name = document.getElementById("senderName").value.trim();
+    const email = document.getElementById("senderEmail").value.trim();
+    const subject = document.getElementById("emailSubject").value.trim();
+    const message = editor.innerText.trim();
 
-    const subject = encodeURIComponent(subjectInput);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-    );
+    const emailBody = `
+Name: ${name}
+Email: ${email}
 
-    window.location.href = `mailto:hinazago@gmail.com?subject=${subject}&body=${body}`;
+Message:
+${message}
+    `;
+
+    window.location.href = `mailto:hinazago@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
   });
 }

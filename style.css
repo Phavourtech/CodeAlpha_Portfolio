@@ -829,4 +829,61 @@ footer {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}.editor-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 12px;
+}
+
+.editor-toolbar button,
+.editor-toolbar select,
+.file-button {
+  border: 1px solid rgba(82, 34, 74, 0.18);
+  background: #fff7fb;
+  color: #4d2348;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.editor-toolbar button:hover,
+.editor-toolbar select:hover,
+.file-button:hover {
+  background: #f4d7e5;
+  transform: translateY(-2px);
+}
+
+.message-editor {
+  min-height: 190px;
+  padding: 18px;
+  border: 1px solid rgba(82, 34, 74, 0.2);
+  border-radius: 22px;
+  background: #fffafc;
+  color: #4d2348;
+  line-height: 1.7;
+  outline: none;
+}
+
+.message-editor:focus {
+  border-color: #b54976;
+  box-shadow: 0 0 0 4px rgba(181, 73, 118, 0.12);
+}
+
+.message-editor:empty::before {
+  content: attr(data-placeholder);
+  color: rgba(77, 35, 72, 0.55);
+}
+
+.message-editor ul,
+.message-editor ol {
+  padding-left: 24px;
+  margin: 10px 0;
+}
+
+.file-note {
+  margin-top: 10px;
+  color: #7a496d;
+  font-size: 0.95rem;
 }
