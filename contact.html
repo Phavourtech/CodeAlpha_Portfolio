@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | Ugochukwu Favour</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="mark">UF</a>
+    <button class="menu-toggle" id="menuToggle">Menu</button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">Profile</a>
+      <a href="projects.html">Work</a>
+      <a href="case-studies.html">Case Studies</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-section contact-panel">
+      <div>
+        <p class="label">Contact</p>
+        <h1>Let us build something useful and well thought out.</h1>
+      </div>
+
+      <div class="contact-links">
+        <a href="mailto:hinazago@gmail.com">hinazago@gmail.com</a>
+        <a href="https://github.com/Phavourtech" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/ugochukwu-favour-603140331" target="_blank">LinkedIn</a>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <form class="contact-form email-composer" id="contactForm">
+        <div class="composer-header">
+          <h2>Send a Message</h2>
+          <p>This prepares an email to my inbox.</p>
+        </div>
+
+        <input type="text" id="name" placeholder="Your name" required />
+        <input type="email" id="email" placeholder="Your email" required />
+        <input type="text" id="subjectInput" placeholder="Subject" required />
+
+        <div class="composer-toolbar">
+          <button type="button" data-format="bold"><strong>B</strong></button>
+          <button type="button" data-format="italic"><em>I</em></button>
+          <button type="button" data-format="list">List</button>
+          <button type="button" data-format="emoji">😊</button>
+
+          <label class="file-label">
+            Add file
+            <input type="file" id="fileInput" />
+          </label>
+        </div>
+
+        <textarea id="message" placeholder="Write your message here..." required></textarea>
+
+        <p class="file-note" id="fileNote">
+          No file selected. Files cannot attach automatically through browser mail links, but your email app will open so you can attach it there.
+        </p>
+
+        <button type="submit" class="send-btn">Send Message</button>
+        <p id="formStatus">Your email app will open with the message prepared.</p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Ugochukwu Favour.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
